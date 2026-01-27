@@ -3,3 +3,10 @@ body {
     'Segoe UI', sans-serif;
     height: 2000px;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+section {
+  scroll-margin-top: 75px;
+}
