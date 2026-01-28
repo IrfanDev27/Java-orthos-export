@@ -15,31 +15,55 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
-      <div className="nav-container">
-        <div className="nav-logo">
-          Java<span>Orthos</span>
-        </div>
-
-        <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
-          <a href="#about">About</a>
-          <a href="#quality">Quality</a>
-          <a href="#product">Product</a>
-          <a href="#contact" className="nav-btn">Contact</a>
-        </nav>
-
+    <>
+      {/* OVERLAY */}
+      {menuOpen && (
         <div
-          className="hamburger"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
+          className="menu-overlay"
+          onClick={() => setMenuOpen(false)}
+        ></div>
+      )}
+
+      <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
+        <div className="nav-container">
+          {/* LOGO */}
+          <div className="nav-logo">
+            Java<span>Orthos</span>
+          </div>
+
+          {/* NAV LINKS */}
+          <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
+            <a href="#about" onClick={() => setMenuOpen(false)}>
+              About
+            </a>
+            <a href="#quality" onClick={() => setMenuOpen(false)}>
+              Quality
+            </a>
+            <a href="#product" onClick={() => setMenuOpen(false)}>
+              Product
+            </a>
+            <a
+              href="#contact"
+              className="nav-btn"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </a>
+          </nav>
+
+          {/* HAMBURGER */}
+          <div
+            className="hamburger"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 
 export default Navbar;
-
