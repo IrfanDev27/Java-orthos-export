@@ -1,11 +1,39 @@
+import { useState } from "react";
 import "./contact.css";
 
 const ContactSection = () => {
+  const [status, setStatus] = useState("idle");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    const formData = new FormData(e.target);
+
+    const response = await fetch(
+      "https://formspree.io/f/mvzanyap",
+      {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      setStatus("success");
+      e.target.reset();
+    } else {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="contact">
       <div className="contact-container">
         <div className="contact-grid">
-          
+
           {/* LEFT INFO */}
           <div className="contact-info">
             <span className="contact-label">Business Inquiry</span>
@@ -14,59 +42,59 @@ const ContactSection = () => {
               We welcome inquiries from importers, distributors, and long-term
               partners looking for reliable herbal supply from Indonesia.
             </p>
-
-            <ul className="contact-details">
-              <li><strong>Location:</strong> Indonesia</li>
-              <li><strong>Supply Focus:</strong> Export-oriented herbal products</li>
-              <li><strong>Partnership:</strong> Long-term cooperation</li>
-            </ul>
           </div>
 
           {/* RIGHT FORM */}
-          <form
-            className="contact-form"
-            action="https://formspree.io/f/mvzanyap"
-            method="POST"
-          >
-            <div className="form-group">
-              <label>Name</label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Your full name"
-                required
-              />
+          {status === "success" ? (
+            <div className="form-success">
+              <h3>Message Sent Successfully</h3>
+              <p>
+                Thank you for reaching out. Our team will respond to your inquiry
+                within 24 hours.
+              </p>
             </div>
+          ) : (
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <input type="hidden" name="_subject" value="New Export Inquiry" />
 
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="your@email.com"
-                required
-              />
-            </div>
+              <div className="form-group">
+                <label>Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                />
+              </div>
 
-            <div className="form-group">
-              <label>Message</label>
-              <textarea
-                name="message"
-                rows="5"
-                placeholder="Tell us about your product requirements"
-                required
-              ></textarea>
-            </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                />
+              </div>
 
-            {/* OPTIONAL BUT RECOMMENDED */}
-            <input
-              type="hidden"
-              name="_subject"
-              value="New Export Inquiry from Website"
-            />
+              <div className="form-group">
+                <label>Message</label>
+                <textarea
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
 
-            <button type="submit">Send Inquiry</button>
-          </form>
+              <button type="submit" disabled={status === "loading"}>
+                {status === "loading" ? "Sending..." : "Send Inquiry"}
+              </button>
+
+              {status === "error" && (
+                <p className="form-error">
+                  Something went wrong. Please try again.
+                </p>
+              )}
+            </form>
+          )}
 
         </div>
       </div>

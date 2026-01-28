@@ -105,6 +105,28 @@
   background-color: #327a52;
 }
 
+.form-success {
+  background: #f3faf6;
+  padding: 32px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.form-success h3 {
+  color: #1f3d2b;
+  margin-bottom: 12px;
+}
+
+.form-success p {
+  color: #4b6b5c;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
 /* Responsive */
 @media (max-width: 768px) {
   .contact {
