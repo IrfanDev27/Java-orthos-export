@@ -4,6 +4,7 @@ import AboutSection from "./Components/AboutSection/About.jsx";
 import QualitySection from "./Components/QualitySection/Quality.jsx";
 import ProductSection from "./Components/ProductSection/Product.jsx";
 import ContactSection from "./Components/ContactSection/Contact.jsx";
+import Footer from "./Components/Footer/Footer.jsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
        <QualitySection />
        <ProductSection />
        <ContactSection />
+       <Footer />
     </>
   );
 }
