@@ -15,7 +15,6 @@
   align-items: flex-start;
 }
 
-/* LEFT INFO */
 .contact-label {
   display: inline-block;
   font-size: 14px;
@@ -54,7 +53,7 @@
   color: #1f3d2b;
 }
 
-/* FORM */
+
 .contact-form {
   background-color: #ffffff;
   padding: 40px;
