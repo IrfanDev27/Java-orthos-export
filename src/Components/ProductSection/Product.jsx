@@ -1,4 +1,4 @@
-import "./product.css";
+import "./Product.css";
 
 
 const ProductSection = () => {
